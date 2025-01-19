@@ -6,6 +6,7 @@ import CreateIndexSection from "../components/IndexSelection/CreateIndexSelectio
 import SearchResultsWidget from "../components/SearchResultsWidget/SearchResultsWidget";
 import HeaderComponent from "../components/HeaderCreation/HeaderCreation";
 import FooterComponent from "../components/FooterCreation/FooterCreation";
+import NavbarComponent from "../components/NavBar/NavBar";
 
 import axios from "axios";
 
