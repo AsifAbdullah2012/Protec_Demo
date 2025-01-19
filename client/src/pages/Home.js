@@ -39,7 +39,6 @@ function Home() {
   return (
     <div>
       {/* ------  Navigation Bar CODE: <NavbarComponent /> --------- */}
-
       <NavbarComponent />
 
       {/* ------- Header Section ----------*/}

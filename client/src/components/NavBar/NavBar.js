@@ -37,6 +37,25 @@ const NavbarComponent = () => {
                </NavDropdown.Item>
               
                */}
+
+              {/* ----- OPEN New Tab  */}
+
+              <NavDropdown.Item
+                onClick={() =>
+                  window.open("/contact", "_blank", "noopener,noreferrer")
+                }
+              >
+                Contact
+              </NavDropdown.Item>
+
+              <NavDropdown.Item
+                onClick={() =>
+                  window.open("/newpage", "_blank", "noopener,noreferrer")
+                }
+              >
+                Custom Widget
+              </NavDropdown.Item>
+
               <NavDropdown.Item
                 onClick={() =>
                   window.open("/newpage", "_blank", "noopener,noreferrer")
