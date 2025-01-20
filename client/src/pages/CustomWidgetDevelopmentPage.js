@@ -21,9 +21,9 @@ const NewPage = () => {
           gap: "20px",
         }}
       >
-        <DueDiligence />
-        <Kyc />
         <RotAnalysis />
+        <Kyc />
+        <DueDiligence />
       </div>
       <FooterCreation />
     </div>
