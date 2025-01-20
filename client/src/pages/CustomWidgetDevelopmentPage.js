@@ -9,6 +9,10 @@ import FooterCreation from "../components/FooterCreation/FooterCreation";
 import HeaderComponentWidgetDevelopment from "../components/HeaderCreation/HeaderCreationWidgetDevelopment";
 import CreateIndexSection from "../components/IndexSelection/CreateIndexSelection";
 import SearchResultsWidget from "../components/SearchResultsWidget/SearchResultsWidget";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
 const NewPage = () => {
   // mock data for the Search Results Widget
@@ -24,11 +28,23 @@ const NewPage = () => {
     ],
   };
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#1A2027",
+    }),
+  }));
+
   return (
-    <div>
+    <Box sx={({ flexGrow: 2 }, { width: "100%" })}>
       <NavbarComponent />
       <HeaderComponentWidgetDevelopment />
-      <div
+
+      {/*       <div
         style={{
           display: "flex", // Enable flexbox for layout
           justifyContent: "space-evenly", // Space widgets evenly
@@ -40,26 +56,36 @@ const NewPage = () => {
         <RotAnalysis />
         <Kyc />
         <DueDiligence />
-      </div>
+      </div> */}
 
-      <div
-        style={{
-          display: "flex", // Enable flexbox for layout
-          justifyContent: "space-evenly", // Space widgets evenly
-          padding: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <CreateIndexSection />
-        <SearchResultsWidget
-          status={mockData.status}
-          images={mockData.images}
-          retrievedText={mockData.retrievedText}
-        />
-        {/* Add other components here (e.g., right-side content) */}
-      </div>
+      <Grid container spacing={3} justifyContent="center">
+        <Grid item xs="4">
+          <RotAnalysis />
+        </Grid>
+        <Grid item xs="4">
+          <Kyc />
+        </Grid>
+        <Grid item xs="4">
+          <DueDiligence />
+        </Grid>
+      </Grid>
+
+      {/*   */}
+
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs="6">
+          <CreateIndexSection />
+        </Grid>
+        <Grid item xs="6">
+          <SearchResultsWidget
+            status={mockData.status}
+            images={mockData.images}
+            retrievedText={mockData.retrievedText}
+          />
+        </Grid>
+      </Grid>
       <FooterCreation />
-    </div>
+    </Box>
   );
 };
 
