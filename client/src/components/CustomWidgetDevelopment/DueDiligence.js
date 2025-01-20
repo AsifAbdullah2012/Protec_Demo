@@ -1,6 +1,9 @@
 import React from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const DueDiligence = () => {
   return (
@@ -27,12 +30,31 @@ const DueDiligence = () => {
       </Button>
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle1">Parameters/Settings</Typography>
-        <ul>
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Financial and Credit Analysis"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Operational Due Diligence"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Data Protection"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="(ESG) Compliance"
+          />
+        </FormGroup>
+
+        {/*          <ul>
           <li>Financial and Credit Analysis</li>
           <li>Operational Due Diligence</li>
           <li>Data Protection</li>
           <li>(ESG) Compliance</li>
-        </ul>
+        </ul> */}
       </Box>
       <TextField
         fullWidth

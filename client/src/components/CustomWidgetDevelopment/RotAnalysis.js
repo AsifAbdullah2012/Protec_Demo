@@ -1,5 +1,8 @@
 import React from "react";
 import { Box, Typography, TextField } from "@mui/material";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const RotAnalysis = () => {
   return (
@@ -34,13 +37,36 @@ const RotAnalysis = () => {
       />
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle1">Additional Settings</Typography>
-        <ul>
+
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Supply Disruptions"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Demand Variability"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Quality Issues"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Cybersecurity"
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Regulatory & Compliance"
+          />
+        </FormGroup>
+        {/*          <ul>
           <li>Supply Disruptions</li>
           <li>Demand Variability</li>
           <li>Quality Issues</li>
           <li>Cybersecurity</li>
           <li>Regulatory & Compliance</li>
-        </ul>
+        </ul>  */}
       </Box>
     </Box>
   );

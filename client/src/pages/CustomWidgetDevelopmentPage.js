@@ -6,12 +6,13 @@ import Kyc from "../components/CustomWidgetDevelopment/Kyc";
 import RotAnalysis from "../components/CustomWidgetDevelopment/RotAnalysis";
 import HeaderCreation from "../components/HeaderCreation/HeaderCreation";
 import FooterCreation from "../components/FooterCreation/FooterCreation";
+import HeaderComponentWidgetDevelopment from "../components/HeaderCreation/HeaderCreationWidgetDevelopment";
 
 const NewPage = () => {
   return (
     <div>
       <NavbarComponent />
-      <HeaderCreation />
+      <HeaderComponentWidgetDevelopment />
       <div
         style={{
           display: "flex", // Enable flexbox for layout
