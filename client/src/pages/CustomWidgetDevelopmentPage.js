@@ -1,5 +1,5 @@
 // src/pages/NewPage.js
-import React from "react";
+import React, { useState } from "react";
 import NavbarComponent from "../components/NavBar/NavBar";
 import DueDiligence from "../components/CustomWidgetDevelopment/DueDiligence";
 import Kyc from "../components/CustomWidgetDevelopment/Kyc";
@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
 const NewPage = () => {
+  const [searchResults, setSearchResults] = useState("");
   // mock data for the Search Results Widget
   const mockData = {
     status: "completed",
@@ -74,13 +75,14 @@ const NewPage = () => {
 
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs="6">
-          <CreateIndexSection />
+          <CreateIndexSection setSearchResults={setSearchResults} />
         </Grid>
         <Grid item xs="6">
           <SearchResultsWidget
             status={mockData.status}
             images={mockData.images}
             retrievedText={mockData.retrievedText}
+            results={searchResults}
           />
         </Grid>
       </Grid>

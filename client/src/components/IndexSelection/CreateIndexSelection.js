@@ -6,7 +6,7 @@ import axios from "axios";
 import * as pdfjs from "pdfjs-dist";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.entry";
 
-function CreateIndexSection() {
+function CreateIndexSection({ setSearchResults }) {
   const [file, setFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [status, setStatus] = useState("");
@@ -102,6 +102,7 @@ function CreateIndexSection() {
 
       setResponse(response.data.choices[0].message.content);
       console.log(response.data.choices[0].message.content);
+      setSearchResults(response.data.choices[0].message.content);
 
       setStatus("Search completed.");
     } catch (error) {

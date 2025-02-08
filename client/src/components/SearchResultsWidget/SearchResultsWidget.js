@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box, TextField, Button, Typography } from "@mui/material";
 
-const SearchResultsWidget = ({ status, images, retrievedText }) => {
+const SearchResultsWidget = ({ status, images, retrievedText, results }) => {
   return (
     <div
       style={{
@@ -65,7 +65,7 @@ const SearchResultsWidget = ({ status, images, retrievedText }) => {
       {/* Retrieved Text with Similarity Scores */}
       <div>
         <Typography variant="body2" gutterBottom>
-          Retrieved Text:
+          <p>{results || "No results yet. Try searching!"}</p>
         </Typography>
         {retrievedText && retrievedText.length > 0 ? (
           <ul style={{ listStyleType: "none", padding: 0 }}>
