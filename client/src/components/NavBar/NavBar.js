@@ -5,8 +5,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const NavbarComponent = () => {
+  const navigate = useNavigate();
   return (
     <Navbar
       bg="primary"
@@ -40,19 +42,11 @@ const NavbarComponent = () => {
 
               {/* ----- OPEN New Tab  */}
 
-              <NavDropdown.Item
-                onClick={() =>
-                  window.open("/contact", "_blank", "noopener,noreferrer")
-                }
-              >
+              <NavDropdown.Item onClick={() => navigate("/contact")}>
                 Contact
               </NavDropdown.Item>
 
-              <NavDropdown.Item
-                onClick={() =>
-                  window.open("/newpage", "_blank", "noopener,noreferrer")
-                }
-              >
+              <NavDropdown.Item onClick={() => navigate("/newpage")}>
                 Custom Widget
               </NavDropdown.Item>
 

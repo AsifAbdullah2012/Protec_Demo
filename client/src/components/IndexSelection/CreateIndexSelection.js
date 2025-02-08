@@ -1,15 +1,52 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import TopKSliders from "./slideCreation";
+import axios from "axios";
+
+import * as pdfjs from "pdfjs-dist";
+import pdfWorker from "pdfjs-dist/build/pdf.worker.entry";
 
 function CreateIndexSection() {
   const [file, setFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [status, setStatus] = useState("");
-  const [searchquery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [response, setResponse] = useState(""); // Stores AI response
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]); // Capture the selected file
+  };
+
+  const extractTextFromPDF = async (file) => {
+    const reader = new FileReader();
+
+    return new Promise((resolve, reject) => {
+      reader.onload = async () => {
+        try {
+          const pdfData = new Uint8Array(reader.result);
+
+          // Import pdfjs-dist dynamically
+          const pdfjsLib = await import("pdfjs-dist");
+
+          pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
+
+          const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+          let text = "";
+          for (let i = 0; i < pdf.numPages; i++) {
+            const page = await pdf.getPage(i + 1);
+            const content = await page.getTextContent();
+            text += content.items.map((item) => item.str).join(" ") + "\n";
+          }
+          resolve(text);
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
   };
 
   const handleCreateIndex = () => {
@@ -26,7 +63,53 @@ function CreateIndexSection() {
     }, 2000);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
+    if (!searchQuery || !apiKey || !file) {
+      setStatus("Please provide a search query, API key, and upload a PDF.");
+      return;
+    }
+
+    setStatus("Fetching answer...");
+    setLoading(true);
+
+    try {
+      const extractedText = await extractTextFromPDF(file);
+      console.log(apiKey);
+
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-4-turbo", // Change to "gpt-3.5-turbo" if needed
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are an AI assistant helping with document analysis.",
+            },
+            {
+              role: "user",
+              content: `Based on this document:\n${extractedText}\n\n${searchQuery}`,
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+        }
+      );
+
+      setResponse(response.data.choices[0].message.content);
+      console.log(response.data.choices[0].message.content);
+
+      setStatus("Search completed.");
+    } catch (error) {
+      console.error("Error fetching response:", error);
+      setResponse("Error processing your request. Please check your API key.");
+    }
+
+    setLoading(false);
     console.log("handled completely!");
   };
 
@@ -122,7 +205,7 @@ function CreateIndexSection() {
           id="searchquery"
           type="text"
           fullWidth
-          value={searchquery}
+          value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="eg. what is the difference A basis and B basis?"
         />
