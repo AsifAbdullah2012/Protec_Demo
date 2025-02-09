@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import { Box, TextField, Button, Typography } from "@mui/material";
 
 const SearchResultsWidget = ({ status, images, retrievedText, results }) => {
+  // Parse results if it's a string
+  const parsedResults = React.useMemo(() => {
+    if (typeof results === 'string') {
+      return {
+        text: results,
+        score: 0.95 // Default similarity score
+      };
+    }
+    return null;
+  }, [results]);
+
   return (
     <div
       style={{
@@ -23,14 +34,18 @@ const SearchResultsWidget = ({ status, images, retrievedText, results }) => {
         <Typography variant="body2" gutterBottom>
           Search Status:
         </Typography>
-
         <p
           style={{
             fontWeight: "bold",
-            color: status === "completed" ? "green" : "red",
+            color: status === "completed" ? "green" : 
+                   status === "loading" ? "#FFA500" :  // Changed to orange
+                   status === "not_started" ? "#808080" : // Gray for not started
+                   "red",
           }}
         >
-          {status || "Not started"}
+          {status === "loading" ? "Searching..." : 
+           status === "completed" ? "Search Completed" : 
+           "Not started"}
         </p>
       </div>
 
@@ -62,32 +77,17 @@ const SearchResultsWidget = ({ status, images, retrievedText, results }) => {
         )}
       </div>
 
-      {/* Retrieved Text with Similarity Scores */}
+      {/* Results Display */}
       <div>
-        <Typography variant="body2" gutterBottom>
-          <p>{results || "No results yet. Try searching!"}</p>
-        </Typography>
-        {retrievedText && retrievedText.length > 0 ? (
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            {retrievedText.map((item, index) => (
-              <li
-                key={index}
-                style={{
-                  marginBottom: "10px",
-                  padding: "10px",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                  backgroundColor: "#fff",
-                }}
-              >
-                <strong>Similarity Score:</strong> {item.score}
-                <br />
-                <strong>Text:</strong> {item.text}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No text retrieved</p>
+        {status === "completed" && parsedResults && (
+          <div style={{ padding: "15px", backgroundColor: "#f8f9fa", borderRadius: "5px" }}>
+            <Typography variant="body1" style={{ whiteSpace: "pre-wrap" }}>
+              {parsedResults.text}
+            </Typography>
+            <Typography variant="body2" style={{ marginTop: "10px", color: "#666" }}>
+              Similarity Score: {(parsedResults.score * 100).toFixed(1)}%
+            </Typography>
+          </div>
         )}
       </div>
     </div>

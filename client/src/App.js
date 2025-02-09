@@ -29,10 +29,12 @@ import Contact from "./pages/Contact";
 import Layout from "./pages/Layout";
 
 function App() {
+  const [searchResults, setSearchResults] = useState("");
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home searchResults={searchResults} setSearchResults={setSearchResults} />} />
         <Route path="/" element={<Layout />} />
         <Route path="contact" element={<Contact />} />
         <Route path="newpage" element={<NewPage />} />

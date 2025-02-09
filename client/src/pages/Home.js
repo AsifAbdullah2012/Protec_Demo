@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import PartsComponentSearch from "../components/widget1/PartsComponentSearch";
-import SecondWidget from "../components/widget2/SecondWidget"; // Import the second widget
 import SearchWidget from "../components/SearchWidget/SearchWidget";
 import CreateIndexSection from "../components/IndexSelection/CreateIndexSelection";
 import SearchResultsWidget from "../components/SearchResultsWidget/SearchResultsWidget";
@@ -17,11 +15,14 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function Home() {
+function Home({ searchResults, setSearchResults }) {
   // State to manage user query and search results
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(null); // To store results from the backend
   const [error, setError] = useState(null); // To store any error messages
+
+  // Add status state
+  const [searchStatus, setSearchStatus] = useState("not started");
 
   // mock data for the Search Results Widget
   const mockData = {
@@ -47,38 +48,27 @@ function Home() {
 
       {/* ------- First Two Widgets ------- */}
 
-      <div
-        style={{
-          display: "flex", // Enable flexbox for layout
-          justifyContent: "space-evenly", // Space widgets evenly
-          padding: "20px",
-          flexWrap: "wrap",
-          gap: "20px",
-        }}
-      >
-        {/* <h1>Search App</h1> */}
+      {/* <div style={{display: "flex", justifyContent: "space-evenly", padding: "20px", flexWrap: "wrap", gap: "20px"}}>
         <PartsComponentSearch />
         <SecondWidget />
-        {/* <SearchWidget /> */}
-      </div>
+      </div> */}
 
       {/* ------- Second Two Widgets ------- */}
 
-      <div
-        style={{
-          display: "flex", // Enable flexbox for layout
-          justifyContent: "space-evenly", // Space widgets evenly
-          padding: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <CreateIndexSection />
-        <SearchResultsWidget
-          status={mockData.status}
-          images={mockData.images}
-          retrievedText={mockData.retrievedText}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-evenly",
+        padding: "20px",
+        flexWrap: "wrap",
+      }}>
+        <CreateIndexSection 
+          setSearchResults={setSearchResults} 
+          setSearchStatus={setSearchStatus}
         />
-        {/* Add other components here (e.g., right-side content) */}
+        <SearchResultsWidget 
+          results={searchResults} 
+          status={searchStatus}
+        />
       </div>
 
       {/* ----  Footer Component     ----- */}

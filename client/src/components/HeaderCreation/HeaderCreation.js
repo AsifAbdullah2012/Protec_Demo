@@ -10,11 +10,7 @@ const HeaderComponent = () => {
         marginBottom: "20px",
       }}
     >
-      <h2 style={{ fontSize: "48px" }}>AI Widget Platform</h2>
-      <p style={{ fontSize: "24px" }}>
-        This is a demo for parts Components Search, Data Sheet Search and Due
-        Diligence
-      </p>
+      <h2 style={{ fontSize: "40px" }}>Compoxi AI Widget Platform</h2>
     </header>
   );
 };

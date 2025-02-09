@@ -6,7 +6,7 @@ import axios from "axios";
 import * as pdfjs from "pdfjs-dist";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.entry";
 
-function CreateIndexSection({ setSearchResults }) {
+function CreateIndexSection({ setSearchResults, setSearchStatus }) {
   const [file, setFile] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [status, setStatus] = useState("");
@@ -66,10 +66,12 @@ function CreateIndexSection({ setSearchResults }) {
   const handleSearch = async () => {
     if (!searchQuery || !apiKey || !file) {
       setStatus("Please provide a search query, API key, and upload a PDF.");
+      setSearchStatus("error");
       return;
     }
 
     setStatus("Fetching answer...");
+    setSearchStatus("loading");
     setLoading(true);
 
     try {
@@ -100,18 +102,22 @@ function CreateIndexSection({ setSearchResults }) {
         }
       );
 
-      setResponse(response.data.choices[0].message.content);
-      console.log(response.data.choices[0].message.content);
-      setSearchResults(response.data.choices[0].message.content);
+      const responseContent = response.data.choices[0].message.content;
+      setResponse(responseContent);
+      
+      if (typeof setSearchResults === 'function') {
+        setSearchResults(responseContent);
+        setSearchStatus("completed");  // Set status to completed on success
+      }
 
       setStatus("Search completed.");
     } catch (error) {
       console.error("Error fetching response:", error);
       setResponse("Error processing your request. Please check your API key.");
+      setSearchStatus("error");  // Set status to error on failure
     }
 
     setLoading(false);
-    console.log("handled completely!");
   };
 
   return (
