@@ -39,27 +39,6 @@ const SearchResultsWidget = ({ status, images, retrievedText, results }) => {
         <Typography variant="body2" gutterBottom>
           Retrieved Images:
         </Typography>
-        {images && images.length > 0 ? (
-          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-            {images.map((imgSrc, index) => (
-              <img
-                key={index}
-                src={imgSrc}
-                alt={`Retrieved-${index}`}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  borderRadius: "5px",
-                }}
-              />
-            ))}
-          </div>
-        ) : (
-          <Typography variant="body2" gutterBottom>
-            No images retrieved
-          </Typography>
-        )}
       </div>
 
       {/* Retrieved Text with Similarity Scores */}

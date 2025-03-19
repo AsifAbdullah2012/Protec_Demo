@@ -40,23 +40,48 @@ const RotAnalysis = () => {
 
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Supply Disruptions"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Demand Variability"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Quality Issues"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Cybersecurity"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Regulatory & Compliance"
           />
         </FormGroup>

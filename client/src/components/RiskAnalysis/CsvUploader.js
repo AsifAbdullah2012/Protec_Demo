@@ -152,7 +152,11 @@ const CsvUploader = () => {
       <label htmlFor="upload-button">
         <Button
           variant="contained"
-          color="primary"
+          sx={{
+            backgroundColor: "black",
+            color: "white",
+            "&:hover": { backgroundColor: "#333" },
+          }}
           component="span"
           startIcon={<CloudUploadIcon />}
         >
