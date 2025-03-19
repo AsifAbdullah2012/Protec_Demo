@@ -4,6 +4,7 @@ import NavbarComponent from "../components/NavBar/NavBar";
 import DueDiligence from "../components/CustomWidgetDevelopment/DueDiligence";
 import Kyc from "../components/CustomWidgetDevelopment/Kyc";
 import RotAnalysis from "../components/CustomWidgetDevelopment/RotAnalysis";
+import RiskAnalysis from "../components/CustomWidgetDevelopment/RiskAnalysis";
 import HeaderCreation from "../components/HeaderCreation/HeaderCreation";
 import FooterCreation from "../components/FooterCreation/FooterCreation";
 import HeaderComponentWidgetDevelopment from "../components/HeaderCreation/HeaderCreationWidgetDevelopment";
@@ -59,7 +60,7 @@ const NewPage = () => {
         <DueDiligence />
       </div> */}
 
-      <Grid container spacing={3} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center">
         <Grid item xs="4">
           <RotAnalysis />
         </Grid>
@@ -68,6 +69,9 @@ const NewPage = () => {
         </Grid>
         <Grid item xs="4">
           <DueDiligence />
+        </Grid>
+        <Grid item xs="4">
+          <RiskAnalysis />
         </Grid>
       </Grid>
 

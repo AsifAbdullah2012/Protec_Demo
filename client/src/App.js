@@ -27,6 +27,7 @@ import NavbarComponent from "./components/NavBar/NavBar";
 import NoPage from "./pages/NoPage";
 import Contact from "./pages/Contact";
 import Layout from "./pages/Layout";
+import Risk from "./pages/Risk";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<Layout />} />
         <Route path="contact" element={<Contact />} />
         <Route path="newpage" element={<NewPage />} />
+        <Route path="risk" element={<Risk />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </>

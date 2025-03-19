@@ -10,12 +10,15 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "mathjs": "^14.3.1",
+    "papaparse": "^5.5.2",
     "pdfjs-dist": "^2.16.105",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "^5.0.1",
+    "recharts": "^2.15.1",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
