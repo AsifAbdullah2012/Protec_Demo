@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import NavbarComponent from "../components/NavBar/NavBar";
 import DueDiligence from "../components/CustomWidgetDevelopment/DueDiligence";
 import Kyc from "../components/CustomWidgetDevelopment/Kyc";
+import CsvUploader from "../components/RiskAnalysis/CsvUploader";
 import RotAnalysis from "../components/CustomWidgetDevelopment/RotAnalysis";
 import RiskAnalysis from "../components/CustomWidgetDevelopment/RiskAnalysis";
 import HeaderCreation from "../components/HeaderCreation/HeaderCreation";
@@ -14,9 +15,12 @@ import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import RiskNavbar from "../components/NavBar/RiskNavbar";
+import { Typography, Container } from "@mui/material";
 
 const NewPage = () => {
   const [searchResults, setSearchResults] = useState("");
+  const [activeTab, setActiveTab] = useState("rotAnalysis");
   // mock data for the Search Results Widget
   const mockData = {
     status: "completed",
@@ -44,6 +48,7 @@ const NewPage = () => {
   return (
     <Box sx={({ flexGrow: 2 }, { width: "100%" })}>
       <NavbarComponent />
+      <RiskNavbar setActiveTab={setActiveTab} />
       <HeaderComponentWidgetDevelopment />
 
       {/*       <div
@@ -60,36 +65,122 @@ const NewPage = () => {
         <DueDiligence />
       </div> */}
 
-      <Grid container spacing={4} justifyContent="center">
-        <Grid item xs="4">
-          <RotAnalysis />
-        </Grid>
-        <Grid item xs="4">
-          <Kyc />
-        </Grid>
-        <Grid item xs="4">
-          <DueDiligence />
-        </Grid>
-        <Grid item xs="4">
-          <RiskAnalysis />
-        </Grid>
-      </Grid>
+      {/* Conditionally Render Multiple Components for Each Tab */}
+      {activeTab === "rotAnalysis" && (
+        <>
+          <Container maxWidth="lg" style={{ padding: "20px" }}>
+            <Typography variant="h4" align="center" color="gray" gutterBottom>
+              Rot Analysis
+            </Typography>
+            <Grid container spacing={2} style={{ marginBottom: "20px" }}>
+              <Grid item xs={12} sm={4}>
+                <Paper style={{ padding: "20px", textAlign: "center" }}>
+                  <RotAnalysis />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Paper style={{ padding: "20px", textAlign: "center" }}>
+                  <CsvUploader />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} justifyContent="center">
+              <Grid item xs="6">
+                <CreateIndexSection setSearchResults={setSearchResults} />
+              </Grid>
+              <Grid item xs="6">
+                <SearchResultsWidget
+                  status={mockData.status}
+                  images={mockData.images}
+                  retrievedText={mockData.retrievedText}
+                  results={searchResults}
+                />
+              </Grid>
+            </Grid>{" "}
+            {/* Additional component when RotAnalysis is active */}
+          </Container>
+        </>
+      )}
+
+      {/* Conditionally Render Multiple Components for Each Tab */}
+      {activeTab === "kyc" && (
+        <>
+          <Container maxWidth="lg" style={{ padding: "20px" }}>
+            <Typography variant="h4" align="center" color="gray" gutterBottom>
+              KYC
+            </Typography>
+            <Kyc />
+            <Grid container spacing={2} justifyContent="center">
+              <Grid item xs="6">
+                <CreateIndexSection setSearchResults={setSearchResults} />
+              </Grid>
+              <Grid item xs="6">
+                <SearchResultsWidget
+                  status={mockData.status}
+                  images={mockData.images}
+                  retrievedText={mockData.retrievedText}
+                  results={searchResults}
+                />
+              </Grid>
+            </Grid>{" "}
+            {/* Additional component when RotAnalysis is active */}
+          </Container>
+        </>
+      )}
+
+      {/* Conditionally Render Multiple Components for Each Tab */}
+      {activeTab === "dueDiligence" && (
+        <>
+          <Container maxWidth="lg" style={{ padding: "20px" }}>
+            <Typography variant="h4" align="center" color="gray" gutterBottom>
+              Due Dilligence
+            </Typography>
+            <DueDiligence />
+            <Grid container spacing={2} justifyContent="center">
+              <Grid item xs="6">
+                <CreateIndexSection setSearchResults={setSearchResults} />
+              </Grid>
+              <Grid item xs="6">
+                <SearchResultsWidget
+                  status={mockData.status}
+                  images={mockData.images}
+                  retrievedText={mockData.retrievedText}
+                  results={searchResults}
+                />
+              </Grid>
+            </Grid>{" "}
+            {/* Additional component when RotAnalysis is active */}
+          </Container>
+        </>
+      )}
+
+      {activeTab === "riskAnalysis" && (
+        <>
+          <Container maxWidth="lg" style={{ padding: "20px" }}>
+            <Typography variant="h4" align="center" color="gray" gutterBottom>
+              Risk Analysis
+            </Typography>
+            <CsvUploader />
+            <Grid container spacing={2} justifyContent="center">
+              <Grid item xs="6">
+                <CreateIndexSection setSearchResults={setSearchResults} />
+              </Grid>
+              <Grid item xs="6">
+                <SearchResultsWidget
+                  status={mockData.status}
+                  images={mockData.images}
+                  retrievedText={mockData.retrievedText}
+                  results={searchResults}
+                />
+              </Grid>
+            </Grid>{" "}
+            {/* Additional component when RotAnalysis is active */}
+          </Container>
+        </>
+      )}
 
       {/*   */}
 
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs="6">
-          <CreateIndexSection setSearchResults={setSearchResults} />
-        </Grid>
-        <Grid item xs="6">
-          <SearchResultsWidget
-            status={mockData.status}
-            images={mockData.images}
-            retrievedText={mockData.retrievedText}
-            results={searchResults}
-          />
-        </Grid>
-      </Grid>
       <FooterCreation />
     </Box>
   );
