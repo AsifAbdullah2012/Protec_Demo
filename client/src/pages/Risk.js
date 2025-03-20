@@ -35,7 +35,7 @@ const Risk = () => {
       <Box
         sx={{
           backgroundColor: "#1976d2", // Blue Material-UI theme color
-          color: "white",
+          color: "black",
           padding: "20px",
           textAlign: "center",
           borderRadius: "8px",

@@ -24,7 +24,7 @@ const DueDiligence = () => {
         fullWidth
         variant="contained"
         startIcon={<CloudUploadIcon />}
-        sx={{ mb: 2 }}
+        sx={{ backgroundColor: "black", color: "white", mb: 2 }}
       >
         Data-upload
       </Button>
@@ -32,19 +32,39 @@ const DueDiligence = () => {
         <Typography variant="subtitle1">Parameters/Settings</Typography>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Financial and Credit Analysis"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Operational Due Diligence"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="Data Protection"
           />
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={
+              <Checkbox
+                defaultChecked
+                sx={{ color: "black", "&.Mui-checked": { color: "black" } }}
+              />
+            }
             label="(ESG) Compliance"
           />
         </FormGroup>

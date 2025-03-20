@@ -39,7 +39,7 @@ const Kyc = () => {
         fullWidth
         variant="contained"
         startIcon={<CloudUploadIcon />}
-        sx={{ mb: 2 }}
+        sx={{ backgroundColor: "black", color: "white", mb: 2 }}
       >
         Data-sheet upload
       </Button>
